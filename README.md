@@ -1,14 +1,83 @@
-# PR validation setup
+# GH-600 starter samples
 
-These steps are a follow-up to the
-[Expand your team with Copilot exercise](https://github.com/skills/expand-your-team-with-copilot),
-where Copilot coding agent tackles issues directly on GitHub without a local
-coding environment. After completing the exercise, use these tests, workflow,
-and ruleset instructions to add PR-based validation to your exercise repository.
-The same follow-up can be used each time you run the exercise in a new repository.
+This repo is a starter that you copy samples from into your own clone of a repository
+created from the
+[Expand your team with Copilot exercise](https://github.com/skills/expand-your-team-with-copilot)
+template. Each sample is applied by running the matching `.azcli` file (PowerShell
+commands) in numeric order. Run the commands from a terminal opened in this repo.
 
-The **PR validation** workflow compiles and tests the application in `src/`.
-Its **Build and test** check can be required before a pull request is merged.
+## Prerequisites (sample 0): set environment variables
+
+Run [00_set-env-variables.azcli](00_set-env-variables.azcli) first. It must be run one level
+above the repos (`cd ..`). Before running, set `$TARGET_REPO_BASE` to the folder name of
+your cloned exercise repository. The script sets `$GH600_REPO` and `$TARGET_REPO`, which the
+other scripts use. Run every later script in the same terminal session.
+
+## Samples
+
+Each sample copies files into `$TARGET_REPO`. After running it, commit and push the
+changes in the target repo (use a branch and PR where noted).
+
+| # | Script | What it copies |
+|---|--------|----------------|
+| 1 | [01_copy-files-setup-steps.azcli](01_copy-files-setup-steps.azcli) | Copilot setup steps workflow |
+| 2 | [02_copy-files-PR-template.azcli](02_copy-files-PR-template.azcli) | Pull request template |
+| 3 | [03_copy-files-pr-validation.azcli](03_copy-files-pr-validation.azcli) | PR validation workflow and tests |
+| 4 | [04_copy-files-custom-agent.azcli](04_copy-files-custom-agent.azcli) | Custom security agent |
+| 5 | [05_copy-files-custom-agent-pr-review.azcli](05_copy-files-custom-agent-pr-review.azcli) | Agent security review workflow |
+| 6 | [06_copy-files-aw.azcli](06_copy-files-aw.azcli) | Agentic workflow: daily issues report |
+
+### 1. Copilot setup steps
+
+Copies `.github/workflows/copilot-setup-steps.yml`, which prepares the environment the
+Copilot coding agent uses (manually triggerable via `workflow_dispatch`).
+
+Execute: run `01_copy-files-setup-steps.azcli`.
+
+### 2. Pull request template
+
+Copies `.github/pull_request_template.md` so new PRs get a standard description.
+
+Execute: run `02_copy-files-PR-template.azcli`.
+
+### 3. PR validation
+
+Copies the tests (`tests/`), `pytest.ini`, `requirements-test.txt`, `package.json`,
+`package-lock.json`, and the `.github/workflows/pr-validation.yml` workflow. The
+**PR validation** workflow compiles and tests the application in `src/`; its
+**Build and test** check can be required before a pull request is merged.
+
+Execute: run `03_copy-files-pr-validation.azcli`, then follow the steps below
+(prepare the required check, create the ruleset, verify enforcement).
+
+### 4. Custom agent
+
+Copies `.github/agents/sast-sca-security-analyzer.agent.md`, a custom Copilot agent that
+performs SAST/SCA security scans and reports findings with CWE mappings.
+
+Execute: run `04_copy-files-custom-agent.azcli`.
+
+### 5. Custom agent PR review
+
+Copies `.github/workflows/agent-review-security.yml`, which runs the security agent on
+pull requests, on a daily schedule, and on manual dispatch. Requires sample 4.
+
+Execute: run `05_copy-files-custom-agent-pr-review.azcli`.
+
+### 6. Agentic workflow (daily issues report)
+
+Copies the [GitHub Agentic Workflow](https://github.github.com/gh-aw/) source
+`.github/workflows/daily-issues-report.md`, which summarizes open issues each weekday,
+plus `06_executionsteps.azcli` into the target repo.
+
+Execute: run `06_copy-files-aw.azcli`, then in the target repo run
+`06_executionsteps.azcli` step by step. It installs the GitHub CLI and the `gh-aw`
+extension, compiles the workflow (`gh aw compile`), and commits and pushes the result.
+
+## Sample 3 details: PR validation setup
+
+These steps are a follow-up to the exercise: they add PR-based validation to your
+exercise repository and can be repeated for each new repository.
 
 ## Prepare the required check
 
