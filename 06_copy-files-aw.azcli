@@ -1,0 +1,3 @@
+# Step 3: Run these copy commands in PowerShell.
+Copy-Item "$GH600_REPO\.github\workflows\daily-issues-report.md" "$TARGET_REPO\.github\workflows\daily-issues-report.md" -Force
+Copy-Item "$GH600_REPO\06_executionsteps.azcli" "$TARGET_REPO\06_executionsteps.azcli" -Force
