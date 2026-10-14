@@ -1,0 +1,25 @@
+# Step 0: Get the current repository root location.
+# RUN THIS 1 LEVEL UP 
+cd ..
+$repoRoot = Get-Location
+$repoRoot
+
+# Step 1: Set your local repository paths.
+$GH600_REPO_BASE = 'GH-600-base-repo'
+$TARGET_REPO_BASE = 'skills-expand-your-team-with-copilot-v3'
+
+# Step 2: construct repo paths
+$GH600_REPO = "$repoRoot\$GH600_REPO_BASE"
+$TARGET_REPO = "$repoRoot\$TARGET_REPO_BASE"
+
+$GH600_REPO
+$TARGET_REPO
+
+# Step 3: Run these copy commands in PowerShell.
+New-Item -ItemType Directory -Path "$TARGET_REPO\tests" -Force
+Copy-Item "$GH600_REPO\tests\*" "$TARGET_REPO\tests" -Recurse -Force
+Copy-Item "$GH600_REPO\requirements-test.txt" "$TARGET_REPO\requirements-test.txt" -Force
+Copy-Item "$GH600_REPO\pytest.ini" "$TARGET_REPO\pytest.ini" -Force
+Copy-Item "$GH600_REPO\package.json" "$TARGET_REPO\package.json" -Force
+Copy-Item "$GH600_REPO\package-lock.json" "$TARGET_REPO\package-lock.json" -Force
+Copy-Item "$GH600_REPO\.github\workflows\pr-validation.yml" "$TARGET_REPO\.github\workflows\pr-validation.yml" -Force
