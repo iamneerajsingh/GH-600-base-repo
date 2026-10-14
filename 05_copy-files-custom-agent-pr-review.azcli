@@ -1,0 +1,2 @@
+# Step 3: Run these copy commands in PowerShell.
+Copy-Item "$GH600_REPO\.github\workflows\agent-review-security.yml" "$TARGET_REPO\.github\workflows\agent-review-security.yml" -Force

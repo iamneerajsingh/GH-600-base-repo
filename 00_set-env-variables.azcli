@@ -1,0 +1,16 @@
+# Step 0: Get the current repository root location.
+# RUN THIS 1 LEVEL UP 
+cd ..
+$repoRoot = Get-Location
+$repoRoot
+
+# Step 1: Set your local repository paths.
+$GH600_REPO_BASE = 'GH-600-base-repo'
+$TARGET_REPO_BASE = 'skills-expand-your-team-with-copilot-xxx'
+
+# Step 2: construct repo paths
+$GH600_REPO = "$repoRoot\$GH600_REPO_BASE"
+$TARGET_REPO = "$repoRoot\$TARGET_REPO_BASE"
+
+$GH600_REPO
+$TARGET_REPO
