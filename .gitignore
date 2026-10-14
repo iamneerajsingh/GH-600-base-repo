@@ -7,3 +7,4 @@ __pycache__/
 coverage.xml
 test-results.xml
 frontend-test-results.xml
+logs/
