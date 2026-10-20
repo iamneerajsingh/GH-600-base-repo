@@ -1,4 +1,5 @@
 {
+  "_comment": "Code sourced from https://awesome-copilot.github.com/instruction/hooks/",
   "version": 1,
   "hooks": {
     "preToolUse": [
