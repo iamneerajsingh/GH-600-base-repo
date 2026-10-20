@@ -5,6 +5,7 @@
       {
         "type": "command",
         "bash": "./.github/hooks/scripts/commit-gate.sh",
+        "powershell": "pwsh -NoProfile -File .\\.github\\hooks\\scripts\\commit-gate.ps1",
         "cwd": ".",
         "timeoutSec": 120
       }
