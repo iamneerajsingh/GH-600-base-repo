@@ -14,3 +14,8 @@ $TARGET_REPO = "$repoRoot\$TARGET_REPO_BASE"
 
 $GH600_REPO
 $TARGET_REPO
+
+# needed for GHCP hooks
+winget install --id jqlang.jq --exact
+#restart terminal
+jq --version
